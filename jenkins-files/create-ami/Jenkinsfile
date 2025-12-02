@@ -10,7 +10,8 @@ pipeline {
         stage ('build web ami') {
            steps {
             dir ('../../packer-ami') {
-                sh 'ls'
+                sh 'pwd'
+                sh 'ls -ltr'
                 sh 'packer init .'
                 sh 'packer fmt .'
                 sh 'packer validate .'
