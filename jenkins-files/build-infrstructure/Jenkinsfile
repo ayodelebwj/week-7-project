@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage ('terraform init') {
             steps {
-                dir ('../../terraform-infrastructure') {
+                dir ('terraform-infrastructure') {
                     sh 'terraform init'
                     sh 'terraform fmt .'
                     sh 'terraform validate .'
@@ -20,7 +20,7 @@ pipeline {
 
         stage ('terraform plan') {
             steps {
-                dir ('../../terraform-infrastructure') {
+                dir ('terraform-infrastructure') {
                     sh 'terraform plan'
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
 
         stage ('terraform apply') {
             steps {
-                dir ('../../terraform-infrastructure') {
+                dir ('terraform-infrastructure') {
                     sh 'terraform apply --auto-approve'
                 }
             }
