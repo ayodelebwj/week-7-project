@@ -17,7 +17,7 @@ pipeline {
         stage ('build web ami') {
            steps {
             sh 'ls -ltr'
-            dir ('../../packer-ami') {
+            dir ('packer-ami') {
                 sh 'pwd'
                 sh 'ls -ltr'
                 sh 'packer init .'
