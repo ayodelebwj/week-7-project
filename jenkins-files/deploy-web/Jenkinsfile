@@ -7,11 +7,11 @@ pipeline {
     }
     
     stages {
-        stage ('Deploy Web AMI') {
+        stage ('Deploy Fruit-Veg Web app') {
            steps {
            sshagent (credentials: ['AWS-SSH-KEY']) {
                 sh """
-                ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.123 'cd ~ ;
+                ssh -o StrictHostKeyChecking=no ubuntu@172.31.39.190 'cd ~ ;
                 sudo rm -rf fruits-veg_market ;
                 git clone https://github.com/techbleat/fruits-veg_market.git ;
                 cd ~/fruits-veg_market/web ;
