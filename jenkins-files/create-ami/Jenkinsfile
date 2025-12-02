@@ -7,6 +7,13 @@ pipeline {
     }
     
     stages {
+        stage ('checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/ayodelebwj/week-7-project.git'
+            }
+        }
+
         stage ('build web ami') {
            steps {
             dir ('../../packer-ami') {
