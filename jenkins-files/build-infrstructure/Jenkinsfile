@@ -16,6 +16,8 @@ pipeline {
         }
         stage ('terraform init') {
             steps {
+                sh 'pwd'
+                sh 'ls -ltr'
                 dir ('terraform-infrastructure') {
                     sh 'terraform init'
                     sh 'terraform fmt .'
