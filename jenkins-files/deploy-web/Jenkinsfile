@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials ('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials ('aws-secret-access-key')
+        AWS_DEFAULT_REGION = 'us-east-2'
+    }
+    
+    stages {
+        stage ('Deploy Web AMI') {
+           steps {
+           sshagent (credentials: ['AWS-SSH-KEY']) {
+                sh """
+                ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.123 'cd ~ ;
+                sudo rm -rf fruits-veg_market ;
+                git clone https://github.com/techbleat/fruits-veg_market.git ;
+                cd ~/fruits-veg_market/web ;
+                sudo cp ~/fruits-veg_market/web/index.html /var/www/html/index.html'
+                """
+                 }
+             }
+          }
+        }
+     post {
+        success {
+            echo 'Fruit-Veg Web App deployed successfully'
+        }
+
+         failure {
+            echo 'Fruit-Veg Web App deployment failed'
+        }
+    }
+}
+
+      
