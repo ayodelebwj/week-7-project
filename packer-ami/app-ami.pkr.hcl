@@ -2,11 +2,12 @@
 #Provision Java and Python AMI Templates
 #============================================
 
+#Retrieves ubuntu ami from aws store to provision instance source
 data "amazon-parameterstore" "java_ubuntu_2404" {
   name = "/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id"
 }
 
-
+#Creates the instance to build AMI off
 source "amazon-ebs" "java-python-vm-template-root" {
   region          = "us-east-2"
   instance_type   = "t3.micro"
@@ -20,7 +21,7 @@ build {
   name    = "java-python-template-build"
   sources = ["source.amazon-ebs.java-python-vm-template-root"]
 
-  provisioner "file" {
+  provisioner "file" { #copy file from local machine to remote machine
     source      = "java.service"
     destination = "/tmp/java.service"
   }
@@ -31,7 +32,7 @@ build {
   }
 
   provisioner "shell" {
-    inline_shebang = "/bin/bash -xe"
+    inline_shebang = "/bin/bash -xe" # could not run the inline commands on ubuntu till i added this line
     inline = [
       "sudo cp /tmp/java.service /etc/systemd/system/java.service",
       "sudo cp /tmp/python.service /etc/systemd/system/python.service",

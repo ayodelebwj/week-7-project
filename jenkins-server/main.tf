@@ -10,7 +10,7 @@ provider "aws" {
   region = "us-east-2"
 }
 
-# Security group to allow SSH and TCP port 8080
+# Jenkins Security group to allow SSH and TCP port 8080
 resource "aws_security_group" "jenkins_sg" {
   name        = "jenkins-sg"
   description = "Allow SSH and HTTP"
@@ -39,10 +39,12 @@ resource "aws_security_group" "jenkins_sg" {
   }
 }
 
+#Retrieves ubuntu ami from AWS store to provision Jenkins instance
 data "aws_ssm_parameter" "ubuntu_2404_ami" {
   name = "/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id"
 }
 
+# Filters ubuntu ami id from ssm parameter for instance provision
 data "aws_ami" "ubuntu_2404" {
   owners      = ["099720109477"]
   most_recent = true
@@ -66,6 +68,7 @@ resource "aws_instance" "jenkins_instance" {
   }
 }
 
+#outputs Jenkins public ip
 output "jenkins_instance_public_ip" {
   description = "public ip for the jenkins instance"
   value       = aws_instance.jenkins_instance.public_ip

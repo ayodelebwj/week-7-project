@@ -99,7 +99,7 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
-# Retrieve APP AMI
+# Retrieve APP AMI FROM CREATED AMIS
 data "aws_ami" "java-python-ami" {
 
   filter {
@@ -108,7 +108,7 @@ data "aws_ami" "java-python-ami" {
   }
 }
 
-# Retrieve WEB AMI
+# Retrieve WEB AMI FROM CREATED AMIS
 data "aws_ami" "web-ami" {
 
   filter {
@@ -117,7 +117,7 @@ data "aws_ami" "web-ami" {
   }
 }
 
-# Java instance
+# CREATE Java instance
 resource "aws_instance" "java_instance" {
   ami             = data.aws_ami.java-python-ami.id
   instance_type   = "t3.micro"              
@@ -129,7 +129,7 @@ resource "aws_instance" "java_instance" {
   }
 }
 
-# Python instance
+# CREATE Python instance
 resource "aws_instance" "python_instance" {
   ami             = data.aws_ami.java-python-ami.id
   instance_type   = "t3.micro"              
@@ -141,7 +141,7 @@ resource "aws_instance" "python_instance" {
   }
 }
 
-# Web instance
+# CREATE Web instance
 resource "aws_instance" "web_instance" {
   ami             = data.aws_ami.web-ami.id
   instance_type   = "t3.micro"              
