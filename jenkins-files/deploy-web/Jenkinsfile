@@ -12,6 +12,10 @@ pipeline {
            sshagent (credentials: ['AWS-SSH-KEY']) {
                 sh """
                 ssh -o StrictHostKeyChecking=no ubuntu@172.31.39.190 'cd ~ ;
+                sudo apt install nginx -y ;
+                sudo systemctl daemon-reload ;
+                sudo systemctl enable nginx ;
+                sudo systemctl start nginx ;
                 sudo rm -rf fruits-veg_market ;
                 git clone https://github.com/techbleat/fruits-veg_market.git ;
                 cd ~/fruits-veg_market/web ;
@@ -31,5 +35,10 @@ pipeline {
         }
     }
 }
+
+      sudo apt install nginx -y ;
+      sudo systemctl daemon-reload ;
+      sudo systemctl enable nginx ;
+      sudo systemctl start nginx ;
 
       

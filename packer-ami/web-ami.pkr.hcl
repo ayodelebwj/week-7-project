@@ -22,12 +22,7 @@ build {
   provisioner "shell" {
     inline_shebang = "/bin/bash -xe"
     inline = [
-      "sudo apt update -y",
-      "sudo apt install nginx -y",
-      "sudo systemctl daemon-reload",
-      "sudo systemctl enable nginx",
-      "sudo systemctl start nginx",
-      "exit 0"
+      "sudo apt update -y"
     ]
   }
 }
