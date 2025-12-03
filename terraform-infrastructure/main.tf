@@ -121,7 +121,7 @@ data "aws_ami" "web-ami" {
 resource "aws_instance" "java_instance" {
   ami             = data.aws_ami.java-python-ami.id
   instance_type   = "t3.micro"              
-  key_name        = "ohio-kp"               
+  key_name        = "KEY IS NEEDED HERE"               
   security_groups = [aws_security_group.java_sg.name]
 
   tags = {
@@ -133,7 +133,7 @@ resource "aws_instance" "java_instance" {
 resource "aws_instance" "python_instance" {
   ami             = data.aws_ami.java-python-ami.id
   instance_type   = "t3.micro"              
-  key_name        = "ohio-kp"               
+  key_name        = "KEY IS NEEDED HERE"               
   security_groups = [aws_security_group.python_sg.name]
 
   tags = {
