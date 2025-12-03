@@ -145,7 +145,7 @@ resource "aws_instance" "python_instance" {
 resource "aws_instance" "web_instance" {
   ami             = data.aws_ami.web-ami.id
   instance_type   = "t3.micro"              
-  key_name        = "ohio-kp"               
+  key_name        = "KEY IS NEEDED HERE"               
   security_groups = [aws_security_group.web_sg.name]
 
   tags = {

@@ -59,7 +59,7 @@ data "aws_ami" "ubuntu_2404" {
 resource "aws_instance" "jenkins_instance" {
   ami             = data.aws_ami.ubuntu_2404.id
   instance_type   = "c7i-flex.large"
-  key_name        = "ohio-kp"
+  key_name        = "KEY IS NEEDED HER"
   security_groups = [aws_security_group.jenkins_sg.name]
   user_data       = file("./importantbinaries.sh")
 

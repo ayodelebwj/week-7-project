@@ -11,7 +11,7 @@ pipeline {
            steps {
            sshagent (credentials: ['AWS-SSH-KEY']) {
                 sh """
-                ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.187 'cd ~ ;
+                ssh -o StrictHostKeyChecking=no ubuntu@PRIVATE WEB VM IP NEEDED HERE 'cd ~ ;
                 sudo apt install nginx -y ;
                 sudo systemctl daemon-reload ;
                 sudo systemctl enable nginx ;
